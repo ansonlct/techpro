@@ -45,10 +45,12 @@ class WebBuildTests(unittest.TestCase):
             "original_url": None, "url_resolution_status": "legacy_unverified",
             "feed_name": "香港經濟日報－監察關鍵字",
         }
-        self.assertEqual(build_web_data.article_payload(row)["url"], "")
+        payload = build_web_data.article_payload(row)
+        self.assertTrue(payload["url"].startswith("https://news.google.com/search?"))
+        self.assertEqual(payload["link_kind"], "google_news_search_fallback")
 
 
-    def test_unresolved_google_wrapper_is_not_exported_as_direct_link(self):
+    def test_unresolved_google_wrapper_is_exported_as_clickable_fallback(self):
         row = {
             "fingerprint": "abc123456789012345", "published_at": core.to_iso(core.now_hk()),
             "source": "信報", "category": "AI安全", "title": "OpenAI測試",
@@ -58,13 +60,38 @@ class WebBuildTests(unittest.TestCase):
             "url_resolution_status": "unresolved",
             "feed_name": "信報－全站 RSS 後備",
         }
-        self.assertEqual(build_web_data.article_payload(row)["url"], "")
+        payload = build_web_data.article_payload(row)
+        self.assertEqual(payload["url"], row["url"])
+        self.assertEqual(payload["link_kind"], "google_news_fallback")
+
+    def test_pending_google_wrapper_is_exported_as_clickable_fallback(self):
+        wrapper = "https://news.google.com/rss/articles/CBMiPendingToken123456789?oc=5"
+        row = {
+            "fingerprint": "def123456789012345", "published_at": core.to_iso(core.now_hk()),
+            "source": "香港01", "category": "網騙", "title": "騙案測試",
+            "description": "", "url": wrapper, "original_url": wrapper,
+            "url_resolution_status": "pending", "feed_name": "香港01－全站 RSS 後備",
+        }
+        payload = build_web_data.article_payload(row)
+        self.assertEqual(payload["url"], wrapper)
+        self.assertEqual(payload["link_kind"], "google_news_fallback")
+
+    def test_direct_url_is_marked_as_publisher_direct(self):
+        row = {
+            "fingerprint": "ghi123456789012345", "published_at": core.to_iso(core.now_hk()),
+            "source": "香港電台", "category": "網罪", "title": "測試",
+            "description": "", "url": "https://news.rthk.hk/rthk/ch/test.htm",
+            "original_url": None, "url_resolution_status": "direct", "feed_name": "香港電台 RSS",
+        }
+        payload = build_web_data.article_payload(row)
+        self.assertEqual(payload["url"], row["url"])
+        self.assertEqual(payload["link_kind"], "publisher_direct")
 
     def test_static_files_use_relative_github_pages_paths(self):
         root = Path(__file__).parents[1] / "web"
         html = (root / "index.html").read_text(encoding="utf-8")
         js = (root / "assets/app.js").read_text(encoding="utf-8")
-        self.assertIn('./assets/styles.css', html)
+        self.assertIn('./assets/styles.css?v=20260807-urlfix2', html)
         self.assertIn('fetchJson("./data/news.json")', js)
         self.assertNotIn('fetch("/data/', js)
         self.assertNotIn('id="viewToggleButton"', html)
@@ -158,14 +185,16 @@ class WebBuildTests(unittest.TestCase):
                 seen.add(key)
                 self.assertEqual(core.find_url_override(str(title), expected, overrides, config), item["url"])
 
-    def test_packaged_public_data_contains_no_wrapper_or_homepage_links(self):
+    def test_packaged_public_data_contains_clickable_urls_and_no_homepage_links(self):
         root = Path(__file__).parents[1]
         payload = json.loads((root / "web/data/news.json").read_text(encoding="utf-8"))
         self.assertEqual(payload["total"], len(payload["articles"]))
         for article in payload["articles"]:
             url = article.get("url", "")
-            self.assertFalse(url.startswith("https://news.google.com/"))
+            self.assertTrue(url.startswith(("http://", "https://")), article.get("title", ""))
             self.assertNotEqual(url.rstrip("/"), "https://ansonlct.github.io/technews")
+            if article.get("link_kind") == "google_news_fallback":
+                self.assertTrue(url.startswith("https://news.google.com/"))
 
     def test_generic_seed_database_name_is_used(self):
         root = Path(__file__).parents[1]

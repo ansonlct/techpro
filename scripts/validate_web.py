@@ -18,7 +18,7 @@ from src import news_core as core  # noqa: E402
 
 WEB = ROOT / "web"
 EXPECTED_VERSION = "VERSION 1"
-EXPECTED_CACHE = "hk-risk-monitor-version-1"
+EXPECTED_CACHE = "hk-risk-monitor-version-1-urlfix2-20260807"
 REQUIRED_WEB_FILES = (
     "index.html",
     "manifest.json",
@@ -101,8 +101,6 @@ def is_forbidden_public_url(value: str) -> bool:
     parsed = urlsplit(value)
     host = parsed.netloc.casefold().removeprefix("www.")
     path = parsed.path.rstrip("/")
-    if host == "news.google.com":
-        return True
     if host == "ansonlct.github.io" and path.casefold() == "/technews":
         return True
     return False
@@ -154,10 +152,12 @@ def validate_data() -> tuple[dict, dict]:
             fail(f"news.json 文章 ID 為空或重複：{article_id!r}")
         seen_ids.add(article_id)
         url = str(article.get("url", "")).strip()
+        if not url:
+            fail(f"news.json 第 {index} 篇文章沒有可開啟 URL")
         if not is_safe_public_url(url):
             fail(f"news.json 含非 HTTP(S) URL：{url}")
         if is_forbidden_public_url(url):
-            fail(f"news.json 含 wrapper／網站首頁錯誤連結：{url}")
+            fail(f"news.json 含網站首頁等錯誤連結：{url}")
 
     deployment = status.get("deployment")
     if not isinstance(deployment, dict):
@@ -195,7 +195,7 @@ def validate_html_and_assets() -> None:
     duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
     if duplicates:
         fail("index.html 含重複 id：" + ", ".join(duplicates))
-    for required_ref in ("./assets/styles.css", "./assets/app.js", "./manifest.json"):
+    for required_ref in ("./assets/styles.css?v=20260807-urlfix2", "./assets/app.js?v=20260807-urlfix2", "./manifest.json"):
         if required_ref not in html:
             fail(f"index.html 缺少相對路徑：{required_ref}")
     for ref in parser.local_refs:

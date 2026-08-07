@@ -22,16 +22,7 @@ def safe_http_url(value: str) -> str:
 def article_payload(row) -> dict:
     description = (row["description"] or "").strip()
     resolution_status = row["url_resolution_status"] or ""
-    url = row["url"]
-    # Legacy builds may already have written a wrong direct URL into the rolling cache.
-    # Until that row is seen again and re-resolved, suppress the
-    # unverified legacy URL instead of exporting a possibly unrelated article.
-    if resolution_status in {"legacy_unverified", "legacy_search_unresolved"}:
-        url = row["original_url"] if core.is_google_news_url(row["original_url"] or "") else ""
-    # The website must never present a Google News wrapper as a publisher direct
-    # link. Unresolved wrappers stay visible as articles but are non-clickable.
-    if core.is_google_news_url(url or ""):
-        url = ""
+    public_url, link_kind = core.public_article_link(row)
     return {
         "id": row["fingerprint"][:16],
         "published_at": row["published_at"],
@@ -39,7 +30,8 @@ def article_payload(row) -> dict:
         "category": row["category"] or "其他",
         "title": row["title"],
         "description": description[:600],
-        "url": safe_http_url(url),
+        "url": safe_http_url(public_url),
+        "link_kind": link_kind,
         "url_resolution_status": resolution_status,
         "feed_name": row["feed_name"],
     }

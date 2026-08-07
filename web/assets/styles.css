@@ -368,3 +368,12 @@ a { color: inherit; }
   text-decoration: none;
 }
 .news-row h2 a.link-unavailable:hover { text-decoration: none; }
+
+
+/* URL fallback hotfix: unresolved Google RSS stories remain visibly clickable. */
+.news-row h2 a.google-news-fallback::after {
+  content: " ↗";
+  font-size: .78em;
+  opacity: .65;
+  white-space: nowrap;
+}

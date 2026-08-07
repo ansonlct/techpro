@@ -373,6 +373,52 @@ def canonical_source(source: str, config: dict) -> str:
     return ""
 
 
+def google_news_search_url(title: str, source: str = "") -> str:
+    """Return a safe Google News search fallback for an article.
+
+    This is used only when an old legacy row no longer retains its original
+    per-article Google News wrapper and its stored direct URL is unverified.
+    It guarantees the web UI still has a useful clickable path without
+    presenting a potentially wrong publisher URL as if it were verified.
+    """
+    clean_title = re.sub(r"\s+", " ", str(title or "")).strip()
+    clean_source = re.sub(r"\s+", " ", str(source or "")).strip()
+    if not clean_title:
+        return ""
+    query = f'"{clean_title}" {clean_source}'.strip()
+    return "https://news.google.com/search?" + urllib.parse.urlencode({
+        "q": query, "hl": "zh-HK", "gl": "HK", "ceid": "HK:zh-Hant",
+    })
+
+
+def public_article_link(row) -> tuple[str, str]:
+    """Choose the safest useful public URL and describe its quality.
+
+    Preference order: verified/direct publisher URL -> per-article Google News
+    wrapper -> Google News title search fallback.  The final search fallback is
+    only for legacy rows whose old direct URL cannot be trusted and whose
+    original wrapper was already lost.
+    """
+    status = str(row["url_resolution_status"] or "")
+    current = sanitize_http_url(row["url"] or "")
+    original = sanitize_http_url(row["original_url"] or "")
+
+    if status in {"legacy_unverified", "legacy_search_unresolved"}:
+        if is_google_news_url(original):
+            return original, "google_news_fallback"
+        if is_google_news_url(current):
+            return current, "google_news_fallback"
+        search = google_news_search_url(row["title"], row["source"])
+        return search, "google_news_search_fallback" if search else "unavailable"
+
+    if current:
+        return current, "google_news_fallback" if is_google_news_url(current) else "publisher_direct"
+    if is_google_news_url(original):
+        return original, "google_news_fallback"
+    search = google_news_search_url(row["title"], row["source"])
+    return search, "google_news_search_fallback" if search else "unavailable"
+
+
 def source_from_url(url: str, config: dict) -> str:
     url = sanitize_http_url(url)
     if not url:
@@ -1523,11 +1569,7 @@ def export_csv(destination: Path, rows: Iterable[sqlite3.Row]) -> None:
         writer = csv.writer(fh)
         writer.writerow(headers)
         for row in rows:
-            public_url = row["url"] or ""
-            if is_google_news_url(public_url) or row["url_resolution_status"] in {
-                "legacy_unverified", "legacy_search_unresolved", "unresolved", "pending",
-            }:
-                public_url = ""
+            public_url, _link_kind = public_article_link(row)
             writer.writerow([row["published_at"], row["source"], row["category"], row["title"],
                              public_url, row["description"], row["feed_name"],
                              row["first_seen_at"], row["last_seen_at"]])

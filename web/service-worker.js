@@ -1,9 +1,9 @@
-const CACHE = "hk-risk-monitor-version-1";
+const CACHE = "hk-risk-monitor-version-1-urlfix2-20260807";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./assets/styles.css",
-  "./assets/app.js",
+  "./assets/styles.css?v=20260807-urlfix2",
+  "./assets/app.js?v=20260807-urlfix2",
   "./manifest.json",
   "./icons/icon.svg",
   "./icons/icon-192.png",

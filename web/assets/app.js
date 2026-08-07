@@ -35,8 +35,9 @@
     const value = typeof url === "string" ? url.trim() : "";
     if (!value) return "";
     try {
-      // Require a genuinely absolute publisher URL. Using location.href as a
-      // base turns an empty string into this GitHub Pages homepage.
+      // Require a genuinely absolute HTTP(S) URL.  This may be either a
+      // publisher-direct URL or a per-article Google News fallback URL.
+      // Using location.href as a base would turn an empty value into this site.
       const parsed = new URL(value);
       return ["http:", "https:"].includes(parsed.protocol) && parsed.hostname ? parsed.href : "";
     } catch {
@@ -275,7 +276,7 @@
     els.urlResolution.textContent = attempted ? `${resolved}/${attempted}` : "—";
     els.urlResolutionText.textContent = attempted
       ? (unresolved
-          ? `${unresolved} 條保留 Google News 網址${rejected ? `；已攔截 ${rejected} 條疑似錯配` : ""}`
+          ? `${unresolved} 條未解析為原站直連，但可經 Google News 開啟${rejected ? `；已攔截 ${rejected} 條疑似錯配` : ""}`
           : "全部已驗證為相符的報章原文網址")
       : "本輪沒有待解析網址";
     updateScheduleDisplay();
@@ -526,7 +527,20 @@
     const titleLink = node.querySelector("h2 a");
     titleLink.textContent = article.title;
     titleLink.title = article.title;
-    if (href) titleLink.href = href;
+    if (href) {
+      titleLink.href = href;
+      if (article.link_kind === "google_news_fallback") {
+        titleLink.dataset.linkKind = "google-news-fallback";
+        titleLink.classList.add("google-news-fallback");
+        titleLink.title = `${article.title}（經 Google News 開啟；原站直連仍在解析）`;
+      } else if (article.link_kind === "google_news_search_fallback") {
+        titleLink.dataset.linkKind = "google-news-search-fallback";
+        titleLink.classList.add("google-news-fallback");
+        titleLink.title = `${article.title}（經 Google News 搜尋開啟；舊資料未保留可驗證直連）`;
+      } else {
+        titleLink.dataset.linkKind = "publisher-direct";
+      }
+    }
     const time = node.querySelector("time");
     time.dateTime = article.published_at;
     time.dataset.publishedAt = article.published_at;
@@ -538,7 +552,7 @@
       titleLink.removeAttribute("rel");
       titleLink.setAttribute("aria-disabled", "true");
       titleLink.classList.add("link-unavailable");
-      titleLink.title = `${article.title}（原文連結尚待確認）`;
+      titleLink.title = `${article.title}（暫時沒有可用文章連結）`;
     }
     return node;
   }
