@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "app": "香港網騙及數碼風險新聞監察器",
+  "version": "VERSION 1",
+  "generated_at": "2026-08-02T22:16:07+08:00",
+  "window_hours": 48,
+  "total": 12,
+  "summary": {
+    "categories": {
+      "網騙": 4,
+      "網罪": 3,
+      "電騙": 3,
+      "AI安全": 1,
+      "平台罪案": 1
+    },
+    "sources": {
+      "香港電台": 2,
+      "明報": 2,
+      "無綫新聞": 2,
+      "信報": 1,
+      "有線新聞": 1,
+      "香港經濟日報": 1,
+      "香港01": 1,
+      "am730": 1,
+      "文匯報": 1
+    }
+  },
+  "articles": [
+    {
+      "id": "cfb42933ba0d760a",
+      "published_at": "2026-08-02T10:43:01+08:00",
+      "source": "信報",
+      "category": "AI安全",
+      "title": "OpenAI丨新模型Astra一口氣破解10條數學難題",
+      "description": "OpenAI丨新模型Astra一口氣破解10條數學難題 信報網站",
+      "url": "https://www.hkej.com/instantnews/international/article/4471524/OpenAI丨新模型Astra一口氣破解10條數學難題",
+      "url_resolution_status": "curated_verified",
+      "feed_name": "信報－全站 RSS 後備"
+    },
+    {
+      "id": "70df3c39e5c9f26b",
+      "published_at": "2026-08-02T02:18:26+08:00",
+      "source": "香港電台",
+      "category": "網罪",
+      "title": "世衛︰剛果民主共和國今輪伊波拉疫情是該國歷來最大規模",
+      "description": "世界衛生組織表示，剛果民主共和國目前的伊波拉疫情，是該國歷來最大規模的一次，警告疫情正在加劇，並持續傳播，通報病例和死亡人數持續增加。 截至上月30日，剛果民主共和國已經有3605宗確診病例，當中1587人死亡，死亡率大約44%。世衛說，當地上星期錄得的病例創單周紀錄，新增567宗確診，296人死亡，反映疫情傳播速度異常快，又說不安全局勢、人口流離失所和跨境流動等因素繼續阻礙應對工作，並增加疫情進一步擴散的風險。 目前疫情的爆發中心位於東北部的伊圖里省，病毒亦蔓延到鄰近數個省分。 今輪疫情在5月15日宣布爆發，錄得的病例超過2018年至2020年期間的疫情，當時通報的病例有近3500宗，其中近2300人死亡。 編輯︰張萬燕",
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1864645-20260802.htm",
+      "url_resolution_status": "direct",
+      "feed_name": "香港電台－國際新聞 RSS"
+    },
+    {
+      "id": "7b256c7aef942174",
+      "published_at": "2026-08-01T19:25:01+08:00",
+      "source": "有線新聞",
+      "category": "電騙",
+      "title": "25歲內地女假冒特務誘簽保密協議索錢被捕 涉四宗電騙涉款近300萬",
+      "description": "25歲內地女假冒特務誘簽保密協議索錢被捕 涉四宗電騙涉款近300萬 i-cable.com",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "有線新聞－全站 RSS 後備"
+    },
+    {
+      "id": "a9165774658ea332",
+      "published_at": "2026-08-01T18:54:41+08:00",
+      "source": "香港經濟日報",
+      "category": "電騙",
+      "title": "假冒官員｜警方拘一名25歲持雙程證女子 涉四宗騙案共294萬元",
+      "description": "假冒官員｜警方拘一名25歲持雙程證女子 涉四宗騙案共294萬元 香港經濟日報HKET",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "香港經濟日報－全站 RSS 後備"
+    },
+    {
+      "id": "a7be2e190a4a57ae",
+      "published_at": "2026-08-01T17:39:59+08:00",
+      "source": "香港01",
+      "category": "電騙",
+      "title": "警破4假冒官員騙案 25歲內地「女特務」涉呃近$300萬被捕",
+      "description": "警破4假冒官員騙案 25歲內地「女特務」涉呃近$300萬被捕 香港01",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "香港01－全站 RSS 後備"
+    },
+    {
+      "id": "6e4442dc8492ba80",
+      "published_at": "2026-08-01T17:28:49+08:00",
+      "source": "明報",
+      "category": "網罪",
+      "title": "黃翠如重申未懷第二胎 產後變橡筋肚 不敢奢望再當媽",
+      "description": "黃翠如今天（1日）出席健康講座活動時表示，兒子「蕭哈哈」出世後，她每日都擔心兒子會生病；又表示孩子打預防針，是新手媽媽的必經過程。她回憶：「記得兒子第一次接受注射時，我哭得比他還要厲害，覺得針頭刺在他幼嫩的大腿上會非常痛；蕭正楠亦傷心至無法拍攝影片，我們都十分心痛。如今，我們已經習慣，並希望拍下過程讓兒子長大後觀看。幸好，哈哈暫時非常健康。有朋友的孩子曾因感染RSV（呼吸道合胞病毒）而需入住深切治療部。早前，我兒子發燒，我緊張至無法入睡。」",
+      "url": "https://ol.mingpao.com/ldy/showbiz/latest/20260801/1785574638707/%e9%bb%83%e7%bf%a0%e5%a6%82%e9%87%8d%e7%94%b3%e6%9c%aa%e6%87%b7%e7%ac%ac%e4%ba%8c%e8%83%8e-%e7%94%a2%e5%be%8c%e8%ae%8a%e6%a9%a1%e7%ad%8b%e8%82%9a-%e4%b8%8d%e6%95%a2%e5%a5%a2%e6%9c%9b%e5%86%8d%e7%95%b6%e5%aa%bd",
+      "url_resolution_status": "direct",
+      "feed_name": "明報－即時新聞 RSS"
+    },
+    {
+      "id": "98081966bc9679d7",
+      "published_at": "2026-08-01T17:17:32+08:00",
+      "source": "明報",
+      "category": "網騙",
+      "title": "內地女涉至少4宗假冒官員騙案被捕 騙款達294萬元",
+      "description": "警方拘捕一名25歲內地女，涉及至少4宗假冒官員騙案，涉款約294萬元。葵青警區重案組第一隊高級督察伍穎欣指，警方7月24日接獲一宗報案，事主表示早前接到一名自稱內地執法人員來電，指其涉及內地犯罪活動。事主為表清白，依照來電者指示每日報告行蹤，又曾與一女「特務」會面，並簽署保密協議，以及向對方繳交「保證金」。據悉事主依指示，分10次轉錢到騙徒指定銀行戶口、總數涉約231萬元。",
+      "url": "https://news.mingpao.com/ins/%e6%b8%af%e8%81%9e/article/20260801/s00001/1785576474586/%e5%85%a7%e5%9c%b0%e5%a5%b3%e6%b6%89%e8%87%b3%e5%b0%914%e5%ae%97%e5%81%87%e5%86%92%e5%ae%98%e5%93%a1%e9%a8%99%e6%a1%88%e8%a2%ab%e6%8d%95-%e9%a8%99%e6%ac%be%e9%81%94294%e8%90%ac%e5%85%83",
+      "url_resolution_status": "direct",
+      "feed_name": "明報－即時新聞 RSS"
+    },
+    {
+      "id": "193e104c2561b3fd",
+      "published_at": "2026-08-01T17:01:41+08:00",
+      "source": "無綫新聞",
+      "category": "網騙",
+      "title": "咖啡騙局",
+      "description": "咖啡騙局 TVB",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "無綫新聞－全站 RSS 後備"
+    },
+    {
+      "id": "7436a7d291d23754",
+      "published_at": "2026-08-01T16:21:36+08:00",
+      "source": "香港電台",
+      "category": "平台罪案",
+      "title": "印度總理莫迪稱想原諒辱罵他的示威者",
+      "description": "印度總理莫迪表示，他想原諒近期在抗議活動中辱罵他的示威者。 印度早前因為考試試題外洩，引發由年輕人主導的反政府示威浪潮，被認為是近年對莫迪政府構成的最大挑戰。網上流傳的大量影片中，有示威者辱罵莫迪，警方其後要求社交平台刪除相關內容。 莫迪星期五晚在社交平台發布影片，提到有年輕人進行了惡毒的辱罵，使用了不屬於文明社會的言語，不單止針對他，甚至針對他已故的母親，但他想原諒他們，又說年輕人犯的錯誤，應該透過指導而非採取法律行動來糾正。 編輯：許敬軒",
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1864611-20260801.htm",
+      "url_resolution_status": "direct",
+      "feed_name": "香港電台－國際新聞 RSS"
+    },
+    {
+      "id": "085214dc15828cc2",
+      "published_at": "2026-08-01T15:15:00+08:00",
+      "source": "am730",
+      "category": "網罪",
+      "title": "內地新冠病毒檢測陽性率突破20% 官方：屬周期性波動",
+      "description": "內地新冠病毒檢測陽性率突破20% 官方：屬周期性波動 am730",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "am730－全站 RSS 後備"
+    },
+    {
+      "id": "54aede3ee31648de",
+      "published_at": "2026-08-01T10:15:10+08:00",
+      "source": "無綫新聞",
+      "category": "網騙",
+      "title": "咖啡騙局| 專題節目",
+      "description": "咖啡騙局| 專題節目 TVB",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "無綫新聞－全站 RSS 後備"
+    },
+    {
+      "id": "086dd36a370cfb1c",
+      "published_at": "2026-08-01T04:23:03+08:00",
+      "source": "文匯報",
+      "category": "網騙",
+      "title": "上半年整體罪案跌1.5% 釣魚騙案同比升61%",
+      "description": "上半年整體罪案跌1.5% 釣魚騙案同比升61% 香港文匯報",
+      "url": "",
+      "url_resolution_status": "pending",
+      "feed_name": "文匯報－全站 RSS 後備"
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8fafd">
+  <meta name="description" content="自動更新的香港網騙、網安及數碼風險新聞監察器">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; form-action 'none'">
+  <title>香港數碼風險新聞監察器</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#newsList">跳到新聞列表</a>
+
+  <header class="app-header">
+    <div class="header-left">
+      <button id="menuButton" class="icon-button menu-button" type="button" aria-label="開啟功能欄" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a class="brand" href="./" aria-label="香港數碼風險新聞監察器首頁">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 3 42 10v12c0 11-7.5 19.3-18 23C13.5 41.3 6 33 6 22V10l18-7Z"/><path d="M15 25h5l3-8 4 14 3-6h4"/></svg>
+        </span>
+        <span class="brand-name">風險新聞</span>
+      </a>
+    </div>
+
+    <div class="global-search" role="search">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋新聞" autocomplete="off" aria-label="搜尋標題、摘要、來源或分類">
+      <button id="clearSearchButton" class="search-action hidden" type="button" aria-label="清除搜尋" title="清除搜尋">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+      </button>
+      <button id="filterToggleButton" class="search-action filter-action" type="button" aria-label="顯示篩選選項" aria-expanded="false" title="篩選新聞">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h3M11 12h9M4 18h7M15 18h5"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="13" cy="18" r="2"/></svg>
+      </button>
+    </div>
+
+    <div class="header-actions">
+      <button id="installButton" class="header-text-button hidden" type="button">安裝</button>
+      <button id="themeButton" class="icon-button" type="button" aria-label="切換深淺色模式" title="切換深淺色模式">
+        <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="app-layout">
+    <aside id="sidebar" class="sidebar" aria-label="主要功能">
+      <nav class="sidebar-nav">
+        <button class="nav-item active" type="button" data-view-target="inbox" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 14h5l2 2h2l2-2h5"/></svg>
+          <span>最新監察結果</span>
+          <strong id="sidebarNewsCount">—</strong>
+        </button>
+        <button class="nav-item" type="button" data-view-target="risk">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20V7"/></svg>
+          <span>風險分佈</span>
+        </button>
+        <button class="nav-item" type="button" data-view-target="keywords">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M4 12h16M4 17h12"/><path d="m17 4 3 3-5 5-3 1 1-3 4-6Z"/></svg>
+          <span>監察關鍵字</span>
+          <strong id="keywordCount">0</strong>
+        </button>
+        <button class="nav-item" type="button" data-view-target="system">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20.3h-3v-.08a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 15a1.7 1.7 0 0 0-1.56-1.04H5.3v-3h.14A1.7 1.7 0 0 0 7 9.92a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.12-2.12.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 11.7 4.7V4.6h3v.1a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.04h.14v3h-.14A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+          <span>系統狀態</span>
+          <i id="systemStatusDot" class="nav-status-dot"></i>
+        </button>
+        <button id="downloadApprovedButton" class="nav-item download-approved" type="button" disabled title="下載已核准文章的 TXT 清單">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <span>下載核准 TXT</span>
+          <strong id="approvedCount">0</strong>
+        </button>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+
+      <section class="sidebar-monitor" aria-label="更新狀態">
+        <span id="freshnessBadge" class="status-pill loading">載入資料中</span>
+        <p id="lastUpdated">最後更新：—</p>
+        <p id="nextUpdate" class="next-update">下一次更新：—</p>
+      </section>
+
+      <footer class="sidebar-footer">
+        <span id="footerVersion">VERSION 1</span>
+        <span>GitHub Pages</span>
+      </footer>
+    </aside>
+
+    <main class="app-main">
+      <section id="inboxView" class="view-panel active" data-view="inbox" aria-labelledby="inboxHeading">
+        <div class="mail-toolbar">
+          <div class="toolbar-left">
+            <label class="approve-all-control" title="核准目前顯示的文章">
+              <input id="approveAllCheckbox" type="checkbox" aria-label="核准目前顯示的文章">
+              <span>核准</span>
+            </label>
+            <button id="refreshDataButton" class="icon-button toolbar-button refresh-data" type="button" aria-label="重新載入最新資料" title="重新載入最新已發布資料">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
+            </button>
+            <button id="resetButton" class="icon-button toolbar-button" type="button" aria-label="清除所有篩選" title="清除所有篩選">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5Z"/><path d="m16.5 4.5 4 4M20.5 4.5l-4 4"/></svg>
+            </button>
+          </div>
+          <div class="toolbar-title">
+            <h1 id="inboxHeading">最新監察結果</h1>
+            <span id="activeFilterLabel"></span>
+          </div>
+          <div class="toolbar-right">
+            <span id="approvedToolbarCount" class="approved-toolbar-count">已核准 0</span>
+            <span id="resultCount">—</span>
+          </div>
+        </div>
+
+        <div id="filterPanel" class="filter-panel hidden" aria-label="新聞篩選">
+          <fieldset class="filter-field category-filter-field">
+            <legend>分類</legend>
+            <div id="categoryFilter" class="category-checklist" role="group" aria-label="選擇新聞分類"></div>
+          </fieldset>
+          <label><span>來源</span><select id="sourceFilter"><option value="">全部來源</option></select></label>
+          <label><span>時間</span><select id="timeFilter"><option value="24" selected>最近 24 小時</option><option value="48">最近 48 小時</option><option value="12">最近 12 小時</option><option value="6">最近 6 小時</option></select></label>
+          <label><span>排序</span><select id="sortFilter"><option value="newest">最新優先</option><option value="oldest">最舊優先</option><option value="source">按來源</option></select></label>
+        </div>
+
+        <div id="errorBanner" class="error-banner hidden" role="alert"></div>
+        <div id="newsList" class="news-list" aria-live="polite" aria-busy="true">
+          <div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div>
+        </div>
+        <button id="loadMoreButton" class="load-more hidden" type="button">顯示更多新聞</button>
+      </section>
+
+      <section id="riskView" class="view-panel" data-view="risk" aria-labelledby="riskHeading" hidden>
+        <div class="panel-header">
+          <div><p>48 小時監察窗口</p><h1 id="riskHeading">風險分佈</h1></div>
+          <button class="back-inbox-button" type="button" data-view-target="inbox">返回新聞</button>
+        </div>
+        <div class="metric-grid">
+          <article><span>已收集新聞</span><strong id="totalCount">—</strong></article>
+          <article><span>涵蓋媒體</span><strong id="sourceCount">—</strong></article>
+          <article><span>風險分類</span><strong id="categoryCount">—</strong></article>
+        </div>
+        <div class="analysis-grid">
+          <section class="analysis-card">
+            <div class="card-heading"><h2>風險類別</h2><span>按數量排序</span></div>
+            <div id="categoryBars" class="distribution-bars"></div>
+          </section>
+          <section class="analysis-card">
+            <div class="card-heading"><h2>新聞來源</h2><span>最多 12 個</span></div>
+            <div id="sourceBars" class="distribution-bars"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="keywordsView" class="view-panel" data-view="keywords" aria-labelledby="keywordsHeading" hidden>
+        <div class="panel-header">
+          <div><p>目前新聞搜尋條件</p><h1 id="keywordsHeading">監察關鍵字</h1></div>
+          <button class="back-inbox-button" type="button" data-view-target="inbox">返回新聞</button>
+        </div>
+        <div class="keyword-layout">
+          <section class="analysis-card keyword-card">
+            <div class="card-heading keyword-card-heading">
+              <div><h2>監察中的報章</h2><span id="monitoredSourceSummary">0 間報章</span></div>
+            </div>
+            <div id="monitoredSourceList" class="keyword-list source-chip-list"></div>
+          </section>
+          <section class="analysis-card keyword-card">
+            <div class="card-heading keyword-card-heading">
+              <div><h2>目前啟用的關鍵字</h2><span id="keywordSummary">0 組搜尋條件</span></div>
+              <a id="editKeywordsLink" class="primary-link hidden" target="_blank" rel="noopener noreferrer">編輯 keywords.txt</a>
+            </div>
+            <p id="keywordRepoHint" class="keyword-hint">未能偵測 GitHub Repository。</p>
+            <div id="keywordList" class="keyword-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="systemView" class="view-panel" data-view="system" aria-labelledby="systemHeading" hidden>
+        <div class="panel-header">
+          <div><p>自動收集及部署</p><h1 id="systemHeading">系統狀態</h1></div>
+          <button class="back-inbox-button" type="button" data-view-target="inbox">返回新聞</button>
+        </div>
+        <div class="system-summary-grid">
+          <article><span>來源健康度</span><strong id="feedHealth">—</strong><small id="feedHealthText">等待狀態資料</small></article>
+          <article><span>排程狀態</span><strong id="scheduleState">—</strong><small id="nextScheduleState">—</small></article>
+          <article><span>成功來源</span><strong id="healthyFeeds">—</strong><small>個來源正常</small></article>
+          <article><span>失敗來源</span><strong id="failedFeeds">—</strong><small>個來源需要檢查</small></article>
+          <article><span>最終網址解析</span><strong id="urlResolution">—</strong><small id="urlResolutionText">等待解析資料</small></article>
+        </div>
+        <section class="analysis-card system-card">
+          <div class="card-heading">
+            <div><h2>來源連線狀態</h2><span>資料版本：<b id="dataVersion">—</b></span></div>
+            <button id="statusToggle" class="text-button" type="button">顯示全部來源</button>
+          </div>
+          <div id="statusDetails" class="status-details hidden"></div>
+          <div class="system-note">本工具採用先收集、後分類模式：查詢結果不會因分類未命中而在後端刪除，未命中內容保存為「其他」。重要事件應開啟原文核實。</div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <template id="articleTemplate">
+    <article class="news-row">
+      <label class="approve-control" title="核准此文章">
+        <input class="article-approve" type="checkbox" aria-label="核准此文章">
+        <span aria-hidden="true"></span>
+      </label>
+      <span class="row-indicator" aria-hidden="true"><i></i></span>
+      <span class="source-name"></span>
+      <div class="news-copy">
+        <h2><a target="_blank" rel="noopener noreferrer"></a></h2>
+      </div>
+      <time></time>
+    </article>
+  </template>
+
+  <script src="./assets/app.js" defer></script>
+</body>
+</html>

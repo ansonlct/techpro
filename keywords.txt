@@ -1,0 +1,43 @@
+# 香港網騙及數碼風險新聞監察關鍵字
+# 每個非空白、非 # 開頭的行會作為一個 Google News 搜尋查詢。
+# 可直接新增、刪除或修改；每行一個查詢。
+
+# 詐騙及資金流向
+"詐騙" OR "騙案" OR "騙局" OR "騙徒" OR "受騙" OR "電騙"
+"網騙" OR "電話詐騙" OR "投資騙局" OR "虛假投資" OR "帳戶騎劫" OR "釣魚"
+"貓池" OR GOIP OR "假冒客服" OR "贓款" OR "洗錢"
+scam OR fraud OR phishing
+
+# 網安、漏洞及入侵
+"網絡安全" OR "網絡保安" OR "資訊保安" OR "網絡攻擊" OR "黑客入侵"
+"資料外洩" OR "數據外洩" OR "安全漏洞" OR "系統漏洞" OR "零日漏洞"
+"勒索軟件" OR "惡意程式" OR ransomware OR malware
+cybersecurity OR "data breach" OR vulnerability
+
+# 平台罪案及非法內容
+(Telegram OR WhatsApp OR Signal OR Discord) (詐騙 OR 騙案 OR 犯罪 OR 被控 OR 拘捕)
+(Facebook OR Instagram OR WeChat OR 微信 OR 小紅書) (詐騙 OR 犯罪 OR 非法內容 OR 偷拍 OR 勒索)
+("社交平台" OR "即時通訊平台") (色情 OR 淫褻 OR 兒童色情 OR 恐怖活動 OR 極端主義 OR 洗錢)
+
+# AI安全及數碼風險
+(AI OR 人工智能) ("網絡安全" OR "網絡攻擊" OR 漏洞 OR 外洩 OR 入侵)
+(ChatGPT OR Claude OR Gemini OR DeepSeek) (漏洞 OR 外洩 OR 攻擊 OR 私隱)
+(Anthropic OR "大型語言模型") (安全風險 OR 對話公開 OR 資料洩漏 OR 加密)
+
+# 擴闊監察：機構、基建及執法
+"關鍵基礎設施" OR "私隱專員公署" OR "網罪科" OR CSTCB
+
+# 擴闊監察：科技、人工智能及虛擬資產
+"加密貨幣" OR "人工智能" OR AI OR 科技 OR 虛擬
+
+# 擴闊監察：通訊平台、應用程式及網絡
+WhatsApp OR whatsapp OR app OR 網絡
+
+# 擴闊監察：可疑訊息、身份及個人資料
+"釣魚郵件" OR "個人資料" OR 警 OR 冒充 OR 假冒 OR 騙
+
+# 擴闊監察：病毒、外洩及網絡保安
+木馬 OR 病毒 OR 網安 OR 泄漏 OR 外泄 OR 駭客 OR 黑客
+
+# 擴闊監察：科技罪案及系統事故
+"科技罪案" OR "惡意程式" OR "電腦病毒" OR "勒索軟件" OR 入侵 OR "網絡安全" OR 癱瘓 OR 故障

@@ -1,0 +1,887 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-02T22:16:07+08:00",
+  "version": "VERSION 1",
+  "collection": {
+    "feeds_total": 84,
+    "feeds_ok": 84,
+    "feeds_failed": 0,
+    "new": 0,
+    "updated": 0,
+    "fetched": 1894,
+    "source_filtered": 0,
+    "irrelevant": 0,
+    "errors": [],
+    "mode": "existing-database",
+    "url_overrides": {
+      "checked": 62,
+      "matched": 1,
+      "updated": 0
+    }
+  },
+  "feed_summary": {
+    "total": 84,
+    "healthy": 84,
+    "failed": 0
+  },
+  "deployment": {
+    "repository": "",
+    "default_branch": "main",
+    "workflow_file": "update-and-deploy.yml",
+    "schedule_minutes": [
+      0,
+      15,
+      30,
+      45
+    ],
+    "timezone": "Asia/Hong_Kong",
+    "keywords_file": "keywords.txt"
+  },
+  "custom_keywords": [
+    "\"詐騙\" OR \"騙案\" OR \"騙局\" OR \"騙徒\" OR \"受騙\" OR \"電騙\"",
+    "\"網騙\" OR \"電話詐騙\" OR \"投資騙局\" OR \"虛假投資\" OR \"帳戶騎劫\" OR \"釣魚\"",
+    "\"貓池\" OR GOIP OR \"假冒客服\" OR \"贓款\" OR \"洗錢\"",
+    "scam OR fraud OR phishing",
+    "\"網絡安全\" OR \"網絡保安\" OR \"資訊保安\" OR \"網絡攻擊\" OR \"黑客入侵\"",
+    "\"資料外洩\" OR \"數據外洩\" OR \"安全漏洞\" OR \"系統漏洞\" OR \"零日漏洞\"",
+    "\"勒索軟件\" OR \"惡意程式\" OR ransomware OR malware",
+    "cybersecurity OR \"data breach\" OR vulnerability",
+    "(Telegram OR WhatsApp OR Signal OR Discord) (詐騙 OR 騙案 OR 犯罪 OR 被控 OR 拘捕)",
+    "(Facebook OR Instagram OR WeChat OR 微信 OR 小紅書) (詐騙 OR 犯罪 OR 非法內容 OR 偷拍 OR 勒索)",
+    "(\"社交平台\" OR \"即時通訊平台\") (色情 OR 淫褻 OR 兒童色情 OR 恐怖活動 OR 極端主義 OR 洗錢)",
+    "(AI OR 人工智能) (\"網絡安全\" OR \"網絡攻擊\" OR 漏洞 OR 外洩 OR 入侵)",
+    "(ChatGPT OR Claude OR Gemini OR DeepSeek) (漏洞 OR 外洩 OR 攻擊 OR 私隱)",
+    "(Anthropic OR \"大型語言模型\") (安全風險 OR 對話公開 OR 資料洩漏 OR 加密)",
+    "\"關鍵基礎設施\" OR \"私隱專員公署\" OR \"網罪科\" OR CSTCB",
+    "\"加密貨幣\" OR \"人工智能\" OR AI OR 科技 OR 虛擬",
+    "WhatsApp OR whatsapp OR app OR 網絡",
+    "\"釣魚郵件\" OR \"個人資料\" OR 警 OR 冒充 OR 假冒 OR 騙",
+    "木馬 OR 病毒 OR 網安 OR 泄漏 OR 外泄 OR 駭客 OR 黑客",
+    "\"科技罪案\" OR \"惡意程式\" OR \"電腦病毒\" OR \"勒索軟件\" OR 入侵 OR \"網絡安全\" OR 癱瘓 OR 故障"
+  ],
+  "target_sources": [
+    {
+      "id": "hk01",
+      "name": "香港01"
+    },
+    {
+      "id": "mingpao",
+      "name": "明報"
+    },
+    {
+      "id": "singtao",
+      "name": "星島日報"
+    },
+    {
+      "id": "oriental",
+      "name": "東方日報"
+    },
+    {
+      "id": "orangenews",
+      "name": "橙新聞"
+    },
+    {
+      "id": "am730",
+      "name": "am730"
+    },
+    {
+      "id": "hket",
+      "name": "香港經濟日報"
+    },
+    {
+      "id": "hkej",
+      "name": "信報"
+    },
+    {
+      "id": "rthk",
+      "name": "香港電台"
+    },
+    {
+      "id": "now",
+      "name": "Now 新聞"
+    },
+    {
+      "id": "icable",
+      "name": "有線新聞"
+    },
+    {
+      "id": "tvb",
+      "name": "無綫新聞"
+    },
+    {
+      "id": "wenweipo",
+      "name": "文匯報"
+    },
+    {
+      "id": "takungpao",
+      "name": "大公報"
+    },
+    {
+      "id": "hkgov",
+      "name": "香港政府新聞網"
+    }
+  ],
+  "capture_policy": {
+    "mode": "capture-first",
+    "query_results_require_category_match": false,
+    "sitewide_results_require_category_match": false
+  },
+  "feeds": [
+    {
+      "id": "google_now_ai_security",
+      "name": "Now 新聞－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_now_sitewide",
+      "name": "Now 新聞－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_now_platform",
+      "name": "Now 新聞－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_now_cyber",
+      "name": "Now 新聞－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_now_fraud",
+      "name": "Now 新聞－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_am730_ai_security",
+      "name": "am730－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_am730_sitewide",
+      "name": "am730－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_am730_platform",
+      "name": "am730－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_am730_cyber",
+      "name": "am730－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_am730_fraud",
+      "name": "am730－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkej_ai_security",
+      "name": "信報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkej_sitewide",
+      "name": "信報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_hkej_platform",
+      "name": "信報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_hkej_cyber",
+      "name": "信報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkej_fraud",
+      "name": "信報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_takungpao_ai_security",
+      "name": "大公報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_takungpao_sitewide",
+      "name": "大公報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_takungpao_platform",
+      "name": "大公報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_takungpao_cyber",
+      "name": "大公報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_takungpao_fraud",
+      "name": "大公報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_wenweipo_ai_security",
+      "name": "文匯報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_wenweipo_sitewide",
+      "name": "文匯報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_wenweipo_platform",
+      "name": "文匯報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_wenweipo_cyber",
+      "name": "文匯報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_wenweipo_fraud",
+      "name": "文匯報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_mingpao_ai_security",
+      "name": "明報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_mingpao_sitewide",
+      "name": "明報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "mingpao_all",
+      "name": "明報－即時新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 278,
+      "error": ""
+    },
+    {
+      "id": "google_mingpao_platform",
+      "name": "明報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_mingpao_cyber",
+      "name": "明報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_mingpao_fraud",
+      "name": "明報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_singtao_ai_security",
+      "name": "星島日報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_singtao_sitewide",
+      "name": "星島日報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_singtao_platform",
+      "name": "星島日報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_singtao_cyber",
+      "name": "星島日報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_singtao_fraud",
+      "name": "星島日報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_icable_ai_security",
+      "name": "有線新聞－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "icable_all",
+      "name": "有線新聞－全站 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_icable_sitewide",
+      "name": "有線新聞－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_icable_platform",
+      "name": "有線新聞－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_icable_cyber",
+      "name": "有線新聞－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_icable_fraud",
+      "name": "有線新聞－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_oriental_ai_security",
+      "name": "東方日報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_oriental_sitewide",
+      "name": "東方日報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_oriental_platform",
+      "name": "東方日報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_oriental_cyber",
+      "name": "東方日報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_oriental_fraud",
+      "name": "東方日報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_orangenews_ai_security",
+      "name": "橙新聞－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_orangenews_sitewide",
+      "name": "橙新聞－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_orangenews_platform",
+      "name": "橙新聞－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_orangenews_cyber",
+      "name": "橙新聞－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_orangenews_fraud",
+      "name": "橙新聞－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_tvb_ai_security",
+      "name": "無綫新聞－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_tvb_sitewide",
+      "name": "無綫新聞－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_tvb_platform",
+      "name": "無綫新聞－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_tvb_cyber",
+      "name": "無綫新聞－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_tvb_fraud",
+      "name": "無綫新聞－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hk01_ai_security",
+      "name": "香港01－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hk01_sitewide",
+      "name": "香港01－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_hk01_platform",
+      "name": "香港01－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_hk01_cyber",
+      "name": "香港01－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hk01_fraud",
+      "name": "香港01－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "hkgov_press",
+      "name": "香港政府新聞公報 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_hkgov_ai_security",
+      "name": "香港政府新聞網－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkgov_sitewide",
+      "name": "香港政府新聞網－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkgov_platform",
+      "name": "香港政府新聞網－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_hkgov_cyber",
+      "name": "香港政府新聞網－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hkgov_fraud",
+      "name": "香港政府新聞網－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hket_ai_security",
+      "name": "香港經濟日報－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hket_sitewide",
+      "name": "香港經濟日報－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "google_hket_platform",
+      "name": "香港經濟日報－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_hket_cyber",
+      "name": "香港經濟日報－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_hket_fraud",
+      "name": "香港經濟日報－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "hket_hongkong",
+      "name": "香港經濟日報－香港新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "google_rthk_ai_security",
+      "name": "香港電台－AI安全及數碼風險",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_rthk_sitewide",
+      "name": "香港電台－全站 RSS 後備",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 100,
+      "error": ""
+    },
+    {
+      "id": "rthk_international",
+      "name": "香港電台－國際新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 20,
+      "error": ""
+    },
+    {
+      "id": "rthk_greaterchina",
+      "name": "香港電台－大中華新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 20,
+      "error": ""
+    },
+    {
+      "id": "google_rthk_platform",
+      "name": "香港電台－平台罪案及非法內容",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 1,
+      "error": ""
+    },
+    {
+      "id": "rthk_local",
+      "name": "香港電台－本地新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 20,
+      "error": ""
+    },
+    {
+      "id": "google_rthk_cyber",
+      "name": "香港電台－網安、漏洞及入侵",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "google_rthk_fraud",
+      "name": "香港電台－詐騙及資金流向",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 0,
+      "error": ""
+    },
+    {
+      "id": "rthk_finance",
+      "name": "香港電台－財經新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 20,
+      "error": ""
+    },
+    {
+      "id": "rthk_sport",
+      "name": "香港電台－體育新聞 RSS",
+      "last_success_at": "2026-08-02T14:03:30+08:00",
+      "last_attempt_at": "2026-08-02T14:03:30+08:00",
+      "ok": true,
+      "last_item_count": 20,
+      "error": ""
+    }
+  ]
+}
