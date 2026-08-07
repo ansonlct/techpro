@@ -331,9 +331,12 @@ a { color: inherit; }
 }
 
 
+@media (max-width: 720px) {
   .sidebar { padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
   .sidebar-monitor { margin: 0 8px 12px 12px; }
   .sidebar-footer { padding: 0 14px env(safe-area-inset-bottom) 12px; }
+}
+
 @media (max-width: 480px) {
   .brand { display: none; }
   .app-header { grid-template-columns: 40px minmax(0, 1fr) 36px; }

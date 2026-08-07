@@ -91,7 +91,12 @@ class WebBuildTests(unittest.TestCase):
         root = Path(__file__).parents[1] / "web"
         html = (root / "index.html").read_text(encoding="utf-8")
         js = (root / "assets/app.js").read_text(encoding="utf-8")
-        self.assertIn('./assets/styles.css?v=20260807-urlfix2', html)
+        self.assertIn('./assets/styles.css?v=20260807-mobilefix1', html)
+        self.assertIn('./assets/app.js?v=20260807-mobilefix1', html)
+        self.assertIn('maximum-scale=1', html)
+        self.assertIn('user-scalable=no', html)
+        self.assertIn('initMobileInteractionGuards', js)
+        self.assertIn('gesturestart', js)
         self.assertIn('fetchJson("./data/news.json")', js)
         self.assertNotIn('fetch("/data/', js)
         self.assertNotIn('id="viewToggleButton"', html)

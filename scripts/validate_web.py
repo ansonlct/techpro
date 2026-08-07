@@ -18,7 +18,7 @@ from src import news_core as core  # noqa: E402
 
 WEB = ROOT / "web"
 EXPECTED_VERSION = "VERSION 1"
-EXPECTED_CACHE = "hk-risk-monitor-version-1-urlfix2-20260807"
+EXPECTED_CACHE = "hk-risk-monitor-version-1-mobilefix1-20260807"
 REQUIRED_WEB_FILES = (
     "index.html",
     "manifest.json",
@@ -195,7 +195,7 @@ def validate_html_and_assets() -> None:
     duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
     if duplicates:
         fail("index.html 含重複 id：" + ", ".join(duplicates))
-    for required_ref in ("./assets/styles.css?v=20260807-urlfix2", "./assets/app.js?v=20260807-urlfix2", "./manifest.json"):
+    for required_ref in ("./assets/styles.css?v=20260807-mobilefix1", "./assets/app.js?v=20260807-mobilefix1", "./manifest.json"):
         if required_ref not in html:
             fail(f"index.html 缺少相對路徑：{required_ref}")
     for ref in parser.local_refs:
