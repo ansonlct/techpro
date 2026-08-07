@@ -126,6 +126,37 @@
     ].forEach((id) => { els[id] = $(id); });
   }
 
+  function initMobileInteractionGuards() {
+    const viewport = document.querySelector('meta[name="viewport"]');
+    viewport?.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover");
+
+    let lastTouchEnd = 0;
+    document.addEventListener("dblclick", (event) => {
+      event.preventDefault();
+    }, { passive: false });
+    document.addEventListener("gesturestart", (event) => {
+      event.preventDefault();
+    }, { passive: false });
+    document.addEventListener("gesturechange", (event) => {
+      event.preventDefault();
+    }, { passive: false });
+    document.addEventListener("gestureend", (event) => {
+      event.preventDefault();
+    }, { passive: false });
+    document.addEventListener("touchmove", (event) => {
+      if (event.touches && event.touches.length > 1 && event.cancelable) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+    document.addEventListener("touchend", (event) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 350 && event.cancelable) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
+  }
+
   function initTheme() {
     const saved = storageGet("risk-monitor-theme");
     document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
@@ -801,6 +832,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     collectElements();
     initTheme();
+    initMobileInteractionGuards();
     bindEvents();
     initPwa();
     setActiveView("inbox");

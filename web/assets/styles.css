@@ -44,8 +44,8 @@
 }
 
 * { box-sizing: border-box; }
-html { min-width: 320px; background: var(--bg); }
-body { min-width: 320px; min-height: 100vh; margin: 0; color: var(--text); background: var(--bg); overflow-x: hidden; }
+html { min-width: 320px; background: var(--bg); touch-action: manipulation; }
+body { min-width: 320px; min-height: 100vh; min-height: 100dvh; margin: 0; color: var(--text); background: var(--bg); overflow-x: hidden; overscroll-behavior: none; }
 button, input, select { font: inherit; }
 button, select { cursor: pointer; }
 a { color: inherit; }
@@ -104,17 +104,18 @@ a { color: inherit; }
 .header-text-button { min-height: 36px; padding: 0 13px; border-radius: 18px; color: var(--primary); font-weight: 700; }
 .header-text-button:hover { background: var(--primary-soft); }
 
-.app-layout { min-height: calc(100vh - var(--header-height)); display: flex; }
+.app-layout { min-height: calc(100vh - var(--header-height)); min-height: calc(100dvh - var(--header-height)); display: flex; }
 .sidebar {
   position: sticky;
   z-index: 100;
   top: var(--header-height);
   width: var(--sidebar-width);
   height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   flex: 0 0 var(--sidebar-width);
   display: flex;
   flex-direction: column;
-  padding: 10px 12px 12px 0;
+  padding: 10px 12px calc(12px + env(safe-area-inset-bottom)) 0;
   background: var(--bg);
   overflow-y: auto;
 }
@@ -133,7 +134,7 @@ a { color: inherit; }
 .nav-status-dot.warning { background: var(--warning); }
 .nav-status-dot.error { background: var(--danger); }
 .sidebar-spacer { flex: 1; min-height: 24px; }
-.sidebar-monitor { margin: 0 10px 10px 16px; padding: 13px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.sidebar-monitor { margin: 0 10px 10px 16px; padding: 13px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); scroll-margin-bottom: calc(16px + env(safe-area-inset-bottom)); }
 .status-pill { display: inline-flex; align-items: center; gap: 7px; min-height: 25px; padding: 0 9px; border-radius: 13px; color: var(--muted); background: var(--surface-soft); font-size: 11px; font-weight: 700; }
 .status-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .status-pill.fresh { color: var(--accent); }
@@ -141,11 +142,11 @@ a { color: inherit; }
 .status-pill.error { color: var(--danger); }
 .sidebar-monitor p { margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .sidebar-monitor .next-update { color: var(--primary); font-variant-numeric: tabular-nums; }
-.sidebar-footer { display: flex; justify-content: space-between; gap: 8px; padding: 0 18px; color: var(--muted-2); font-size: 10px; }
+.sidebar-footer { display: flex; justify-content: space-between; gap: 8px; padding: 0 18px env(safe-area-inset-bottom); color: var(--muted-2); font-size: 10px; }
 .sidebar-overlay { display: none; }
 
 .app-main { min-width: 0; flex: 1; margin: 0 12px 12px 0; border-radius: 16px; background: var(--surface); overflow: hidden; box-shadow: 0 0 0 1px rgba(60,64,67,.03); }
-.view-panel { min-height: calc(100vh - var(--header-height) - 12px); }
+.view-panel { min-height: calc(100vh - var(--header-height) - 12px); min-height: calc(100dvh - var(--header-height) - 12px); }
 .view-panel:not(.active) { display: none; }
 
 .mail-toolbar { min-height: 56px; display: grid; grid-template-columns: 190px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 7px 14px 7px 8px; border-bottom: 1px solid var(--line); }
@@ -304,7 +305,7 @@ a { color: inherit; }
   .header-text-button { display: none; }
   .header-actions .icon-button { width: 36px; height: 36px; }
   .app-main { width: 100%; margin: 0; border-radius: 0; }
-  .view-panel { min-height: calc(100vh - var(--header-height)); }
+  .view-panel { min-height: calc(100vh - var(--header-height)); min-height: calc(100dvh - var(--header-height)); }
   .mail-toolbar { grid-template-columns: 158px minmax(0, 1fr) auto; padding-right: 8px; }
   .toolbar-title h1 { font-size: 13px; }
   .toolbar-title span { display: none; }
@@ -329,6 +330,10 @@ a { color: inherit; }
   .status-details { grid-template-columns: 1fr; }
 }
 
+
+  .sidebar { padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+  .sidebar-monitor { margin: 0 8px 12px 12px; }
+  .sidebar-footer { padding: 0 14px env(safe-area-inset-bottom) 12px; }
 @media (max-width: 480px) {
   .brand { display: none; }
   .app-header { grid-template-columns: 40px minmax(0, 1fr) 36px; }
