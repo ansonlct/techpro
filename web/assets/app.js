@@ -644,11 +644,32 @@
     applyFilters();
   }
 
+  function extractDisplayKeywords(queries) {
+    const output = [];
+    const seen = new Set();
+    const tokenPattern = /"([^"]+)"|'([^']+)'|([^\s()]+)/g;
+    (Array.isArray(queries) ? queries : []).forEach((query) => {
+      const value = typeof query === "string" ? query : "";
+      let match;
+      while ((match = tokenPattern.exec(value)) !== null) {
+        const term = String(match[1] ?? match[2] ?? match[3] ?? "").trim();
+        if (!term || ["OR", "AND", "NOT"].includes(term.toUpperCase())) continue;
+        const key = term.toLocaleLowerCase("en");
+        if (seen.has(key)) continue;
+        seen.add(key);
+        output.push(term);
+      }
+      tokenPattern.lastIndex = 0;
+    });
+    return output;
+  }
+
   function renderKeywords(status) {
-    const keywords = Array.isArray(status?.custom_keywords) ? status.custom_keywords : [];
+    const keywordQueries = Array.isArray(status?.custom_keywords) ? status.custom_keywords : [];
+    const keywords = extractDisplayKeywords(keywordQueries);
     const monitoredSources = Array.isArray(status?.target_sources) ? status.target_sources : [];
     els.keywordCount.textContent = String(keywords.length);
-    els.keywordSummary.textContent = `${keywords.length} 組搜尋條件`;
+    els.keywordSummary.textContent = `${keywords.length} 個關鍵字`;
     els.monitoredSourceSummary.textContent = `${monitoredSources.length} 間報章／新聞來源`;
 
     const sourceFragment = document.createDocumentFragment();
@@ -665,7 +686,7 @@
     const fragment = document.createDocumentFragment();
     keywords.forEach((keyword) => {
       const chip = document.createElement("span");
-      chip.className = "keyword-chip";
+      chip.className = "keyword-chip source-chip";
       chip.textContent = keyword;
       fragment.append(chip);
     });
