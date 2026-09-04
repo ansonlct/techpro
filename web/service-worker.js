@@ -1,9 +1,9 @@
-const CACHE = "hk-risk-monitor-version-1-keywordchips1-20260905";
+const CACHE = "hk-risk-monitor-version-1-mobilefix1-20260807";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./assets/styles.css?v=20260905-keywordchips1",
-  "./assets/app.js?v=20260905-keywordchips1",
+  "./assets/styles.css?v=20260807-mobilefix1",
+  "./assets/app.js?v=20260807-mobilefix1",
   "./manifest.json",
   "./icons/icon.svg",
   "./icons/icon-192.png",
