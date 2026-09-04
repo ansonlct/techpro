@@ -119,13 +119,14 @@ class WebBuildTests(unittest.TestCase):
         self.assertIn('id="keywordList"', html)
         self.assertIn('id="monitoredSourceList"', html)
         self.assertIn('extractDisplayKeywords', js)
-        self.assertIn('`${keywords.length} 個關鍵字`', js)
+        self.assertIn('`${keywordCount} 個關鍵字`', js)
         self.assertIn('chip.className = "keyword-chip source-chip"', js)
         self.assertIn('只顯示數碼風險相關', js)
         self.assertIn('class="category-checklist"', html)
         self.assertNotIn('<select id="categoryFilter"', html)
         self.assertIn('defaultCategorySelection', js)
-        self.assertIn('name !== "其他"', js)
+        self.assertIn('defaultDisabledCategories', js)
+        self.assertIn('香港警察相關', js)
         self.assertNotIn('加入方法', html)
         self.assertNotIn('keyword-help', html)
         self.assertIn('編輯 keywords.txt', html)
@@ -137,6 +138,8 @@ class WebBuildTests(unittest.TestCase):
         self.assertNotIn('news-list.compact', css)
         self.assertIn('.news-row', css)
         self.assertIn('.sidebar', css)
+        self.assertIn('.keyword-group + .keyword-group', css)
+        self.assertIn('.police-keyword-group .keyword-chip', css)
 
     def test_build_outputs_creates_valid_json_and_csv(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -154,6 +157,15 @@ class WebBuildTests(unittest.TestCase):
                 self.assertEqual(status["deployment"]["repository"], "example/risk-monitor")
                 self.assertEqual(status["deployment"]["schedule_minutes"], [0, 15, 30, 45])
                 self.assertEqual(status["custom_keywords"], core.load_custom_keywords())
+                self.assertEqual(
+                    [group["name"] for group in status["keyword_groups"]],
+                    [group["name"] for group in core.load_custom_keyword_groups()],
+                )
+                police_group = next(group for group in status["keyword_groups"] if group["name"] == "香港警察相關")
+                self.assertIn("執法人員", police_group["keywords"])
+                self.assertEqual(len(police_group["keywords"]), len(core.DEFAULT_CONFIG["category_keywords"]["香港警察相關"]))
+                self.assertIn("香港警察相關", status["ui"]["default_disabled_categories"])
+                self.assertIn("香港警察相關", status["ui"]["available_categories"])
                 self.assertEqual(len(status["target_sources"]), len(core.DEFAULT_CONFIG["target_sources"]))
                 self.assertEqual(status["capture_policy"]["mode"], "capture-first")
                 self.assertTrue((web_data/"latest_48h.csv").exists())

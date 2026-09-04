@@ -24,6 +24,7 @@
     "網罪": "#00acc1",
     "平台罪案": "#f29900",
     "AI安全": "#d93025",
+    "香港警察相關": "#b3261e",
     "其他": "#80868b",
   };
 
@@ -351,8 +352,15 @@
     if ([...select.options].some((option) => option.value === current)) select.value = current;
   }
 
+  function defaultDisabledCategories() {
+    const configured = state.status?.ui?.default_disabled_categories;
+    const names = Array.isArray(configured) ? configured : ["其他", "香港警察相關"];
+    return new Set(names.map((name) => String(name || "").trim()).filter(Boolean));
+  }
+
   function defaultCategorySelection(categories = state.availableCategories) {
-    return new Set(categories.filter((name) => name !== "其他"));
+    const disabled = defaultDisabledCategories();
+    return new Set(categories.filter((name) => !disabled.has(name)));
   }
 
   function renderCategoryFilters(categoryEntries) {
@@ -364,8 +372,9 @@
       state.categorySelectionInitialized = true;
     } else {
       state.selectedCategories = new Set(names.filter((name) => previous.has(name)));
+      const defaultDisabled = defaultDisabledCategories();
       names.forEach((name) => {
-        if (!oldAvailable.has(name) && name !== "其他") state.selectedCategories.add(name);
+        if (!oldAvailable.has(name) && !defaultDisabled.has(name)) state.selectedCategories.add(name);
       });
     }
     state.availableCategories = names;
@@ -395,6 +404,13 @@
 
   function populateFilters() {
     const categoryCounts = new Map();
+    const configuredCategories = state.status?.ui?.available_categories;
+    if (Array.isArray(configuredCategories)) {
+      configuredCategories.forEach((name) => {
+        const value = String(name || "").trim();
+        if (value) categoryCounts.set(value, 0);
+      });
+    }
     const sourceCounts = new Map();
     state.articles.forEach((article) => {
       const category = article.category || "其他";
@@ -664,12 +680,59 @@
     return output;
   }
 
+  function groupedDisplayKeywords(status) {
+    const fallbackQueries = Array.isArray(status?.custom_keywords) ? status.custom_keywords : [];
+    const rawGroups = Array.isArray(status?.keyword_groups) && status.keyword_groups.length
+      ? status.keyword_groups
+      : [{ name: "其他關聯字", queries: fallbackQueries }];
+    const seen = new Set();
+    const groups = rawGroups.map((group) => {
+      const queries = Array.isArray(group?.queries) ? group.queries : [];
+      const providedKeywords = Array.isArray(group?.keywords) ? group.keywords : null;
+      const keywords = (providedKeywords || extractDisplayKeywords(queries)).filter((keyword) => {
+        const key = keyword.toLocaleLowerCase("en");
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+      return { name: String(group?.name || "其他關聯字"), keywords };
+    }).filter((group) => group.keywords.length);
+    return groups.sort((a, b) => {
+      if (a.name === "香港警察相關") return -1;
+      if (b.name === "香港警察相關") return 1;
+      return 0;
+    });
+  }
+
+  function renderKeywordGroup(group) {
+    const section = document.createElement("section");
+    section.className = `keyword-group${group.name === "香港警察相關" ? " police-keyword-group" : ""}`;
+    const heading = document.createElement("div");
+    heading.className = "keyword-group-heading";
+    const title = document.createElement("h3");
+    title.textContent = group.name;
+    const count = document.createElement("span");
+    count.textContent = `${group.keywords.length} 個`;
+    heading.append(title, count);
+
+    const list = document.createElement("div");
+    list.className = "keyword-group-chip-list";
+    group.keywords.forEach((keyword) => {
+      const chip = document.createElement("span");
+      chip.className = "keyword-chip source-chip";
+      chip.textContent = keyword;
+      list.append(chip);
+    });
+    section.append(heading, list);
+    return section;
+  }
+
   function renderKeywords(status) {
-    const keywordQueries = Array.isArray(status?.custom_keywords) ? status.custom_keywords : [];
-    const keywords = extractDisplayKeywords(keywordQueries);
+    const keywordGroups = groupedDisplayKeywords(status);
+    const keywordCount = keywordGroups.reduce((total, group) => total + group.keywords.length, 0);
     const monitoredSources = Array.isArray(status?.target_sources) ? status.target_sources : [];
-    els.keywordCount.textContent = String(keywords.length);
-    els.keywordSummary.textContent = `${keywords.length} 個關鍵字`;
+    els.keywordCount.textContent = String(keywordCount);
+    els.keywordSummary.textContent = `${keywordCount} 個關鍵字`;
     els.monitoredSourceSummary.textContent = `${monitoredSources.length} 間報章／新聞來源`;
 
     const sourceFragment = document.createDocumentFragment();
@@ -684,12 +747,7 @@
     );
 
     const fragment = document.createDocumentFragment();
-    keywords.forEach((keyword) => {
-      const chip = document.createElement("span");
-      chip.className = "keyword-chip source-chip";
-      chip.textContent = keyword;
-      fragment.append(chip);
-    });
+    keywordGroups.forEach((group) => fragment.append(renderKeywordGroup(group)));
     els.keywordList.replaceChildren(fragment.childNodes.length ? fragment : emptyState("keywords.txt 暫時沒有啟用的監察關鍵字。"));
 
     const repository = String(status?.deployment?.repository || "");

@@ -83,7 +83,14 @@ def build_outputs(collection: dict | None = None) -> dict:
         },
         "articles": articles,
     }
+    config = core.load_config()
     custom_keywords = core.load_custom_keywords()
+    keyword_groups = core.load_custom_keyword_groups()
+    category_keywords = config.get("category_keywords", {})
+    for group in keyword_groups:
+        display_keywords = category_keywords.get(str(group.get("name", "")), [])
+        if isinstance(display_keywords, list) and display_keywords:
+            group["keywords"] = list(dict.fromkeys(str(item).strip() for item in display_keywords if str(item).strip()))
     status = {
         "schema_version": 1,
         "generated_at": generated,
@@ -103,11 +110,22 @@ def build_outputs(collection: dict | None = None) -> dict:
             "keywords_file": "keywords.txt",
         },
         "custom_keywords": custom_keywords,
+        "keyword_groups": keyword_groups,
         "target_sources": [
             {"id": item.get("id", ""), "name": item.get("name", "")}
-            for item in core.load_config().get("target_sources", [])
+            for item in config.get("target_sources", [])
             if item.get("name")
         ],
+        "ui": {
+            "default_disabled_categories": list(
+                config.get("ui", {}).get("default_disabled_categories", ["其他"])
+            ),
+            "available_categories": list(dict.fromkeys([
+                *config.get("category_keywords", {}).keys(),
+                *config.get("context_rules", {}).keys(),
+                "其他",
+            ])),
+        },
         "capture_policy": {
             "mode": "capture-first",
             "query_results_require_category_match": False,

@@ -162,32 +162,58 @@ def load_url_overrides(path: Path | None = None) -> list[dict[str, object]]:
     return output
 
 
-def load_custom_keywords(path: Path | None = None, limit: int = 100) -> list[str]:
-    """Load all Google News monitoring queries from ``keywords.txt``.
+KEYWORD_GROUP_MARKER = re.compile(r"^#\s*@group\s*:\s*(.+?)\s*$", flags=re.I)
+DEFAULT_KEYWORD_GROUP = "其他關聯字"
 
-    ``keywords.txt`` is the single source of truth for monitoring queries. Each
-    non-empty, non-comment line is one query. Duplicate lines are removed
-    case-insensitively, while a safety limit prevents accidental runaway jobs.
+
+def load_custom_keyword_groups(path: Path | None = None, limit: int = 100) -> list[dict[str, object]]:
+    """Load monitoring queries and their display groups from ``keywords.txt``.
+
+    A comment of the form ``# @group: 名稱`` starts a display group.  The marker
+    is ignored by Google News, so ``keywords.txt`` remains the single source of
+    truth for collection queries while the web UI can present related keywords
+    in clearly separated sections. Duplicate query lines are removed globally.
     """
     path = path or KEYWORDS_PATH
     if not path.exists():
         return []
-    output: list[str] = []
+    group_order: list[str] = []
+    grouped: dict[str, list[str]] = {}
+    current_group = DEFAULT_KEYWORD_GROUP
     seen: set[str] = set()
+    count = 0
     for raw_line in path.read_text(encoding="utf-8-sig").splitlines():
-        keyword = re.sub(r"\s+", " ", raw_line.strip())
-        if not keyword or keyword.startswith("#"):
+        stripped = raw_line.strip()
+        marker = KEYWORD_GROUP_MARKER.match(stripped)
+        if marker:
+            current_group = re.sub(r"\s+", " ", marker.group(1)).strip() or DEFAULT_KEYWORD_GROUP
+            if current_group not in grouped:
+                grouped[current_group] = []
+                group_order.append(current_group)
             continue
-        if len(keyword) > 240:
-            keyword = keyword[:240].rstrip()
-        folded = keyword.casefold()
+        query = re.sub(r"\s+", " ", stripped)
+        if not query or query.startswith("#"):
+            continue
+        if len(query) > 240:
+            query = query[:240].rstrip()
+        folded = query.casefold()
         if folded in seen:
             continue
         seen.add(folded)
-        output.append(keyword)
-        if len(output) >= max(1, int(limit)):
+        if current_group not in grouped:
+            grouped[current_group] = []
+            group_order.append(current_group)
+        grouped[current_group].append(query)
+        count += 1
+        if count >= max(1, int(limit)):
             break
-    return output
+    return [{"name": name, "queries": grouped[name]} for name in group_order if grouped[name]]
+
+
+def load_custom_keywords(path: Path | None = None, limit: int = 100) -> list[str]:
+    """Load all Google News monitoring queries from ``keywords.txt``."""
+    groups = load_custom_keyword_groups(path=path, limit=limit)
+    return [query for group in groups for query in group["queries"]]
 
 
 def ensure_runtime_dir() -> None:

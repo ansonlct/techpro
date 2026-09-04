@@ -109,6 +109,24 @@ class CoreTests(unittest.TestCase):
         self.assertTrue(any("site:hk01.com" in job["query"] for job in keyword_jobs))
         self.assertEqual(monitor.DEFAULT_CONFIG["google_news"]["search_groups"], [])
 
+    def test_keyword_groups_and_hong_kong_police_category(self):
+        path = Path(self.temp.name) / "keywords.txt"
+        path.write_text(
+            "# @group: 香港警察相關\n\"執法人員\" OR \"警署\"\n"
+            "# @group: 其他關聯字\n\"詐騙\" OR \"騙案\"\n",
+            encoding="utf-8",
+        )
+        with patch.object(monitor, "KEYWORDS_PATH", path):
+            groups = monitor.load_custom_keyword_groups()
+            self.assertEqual([group["name"] for group in groups], ["香港警察相關", "其他關聯字"])
+            self.assertEqual(monitor.load_custom_keywords(), ["\"執法人員\" OR \"警署\"", "\"詐騙\" OR \"騙案\""])
+        self.assertEqual(
+            monitor.classify_article("警方表示執法人員在警署調查案件", "", monitor.DEFAULT_CONFIG),
+            "香港警察相關",
+        )
+        self.assertIn("執法人員", monitor.DEFAULT_CONFIG["category_keywords"]["香港警察相關"])
+        self.assertIn("香港警察相關", monitor.DEFAULT_CONFIG["ui"]["default_disabled_categories"])
+
     def test_custom_keyword_job_can_accept_direct_query_match(self):
         conn = monitor.db_connect()
         article = monitor.Article(

@@ -256,6 +256,15 @@ a { color: inherit; }
 .keyword-list { display: flex; flex-wrap: wrap; gap: 9px; align-content: flex-start; min-height: 140px; padding-top: 8px; }
 .keyword-list .empty-state { width: 100%; padding: 42px 12px; }
 .keyword-chip { max-width: 100%; padding: 8px 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--line)); border-radius: 18px; color: var(--primary); background: var(--primary-soft); font-size: 12px; }
+.keyword-grouped-list { display: block; min-height: 140px; padding-top: 8px; }
+.keyword-group { padding: 2px 0 4px; }
+.keyword-group + .keyword-group { margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--line-strong); }
+.keyword-group-heading { display: flex; align-items: baseline; gap: 10px; margin: 0 0 11px; }
+.keyword-group-heading h3 { margin: 0; color: var(--text); font-size: 14px; font-weight: 800; }
+.keyword-group-heading span { color: var(--muted); font-size: 11px; font-weight: 700; }
+.keyword-group-chip-list { display: flex; flex-wrap: wrap; gap: 9px; }
+.police-keyword-group .keyword-group-heading h3 { color: #b3261e; }
+.police-keyword-group .keyword-chip { border-color: color-mix(in srgb, #b3261e 28%, var(--line)); color: #b3261e; background: color-mix(in srgb, #b3261e 8%, var(--surface)); }
 .primary-link { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; padding: 0 15px; border-radius: 19px; color: white; background: var(--primary); text-decoration: none; font-size: 12px; font-weight: 700; }
 .primary-link:hover { filter: brightness(.96); }
 .keyword-hint { margin: 12px 0 0; color: var(--muted); font-size: 11px; }
