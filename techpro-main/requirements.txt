@@ -1,0 +1,1 @@
+# VERSION 1 只使用 Python 標準函式庫，無需 pip 安裝第三方套件。

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "overrides": [
+    {
+      "source": "香港電台",
+      "titles": [
+        "多瑙河水位受高溫及乾旱影響下降 匈牙利唯一核電廠將停運"
+      ],
+      "url": "https://news.rthk.hk/rthk/ch/component/k2/1864711-20260802.htm"
+    },
+    {
+      "source": "am730",
+      "titles": [
+        "OpenAI調查發現更多AI「越獄」Anthropic也有AI模型失控 入侵3公司"
+      ],
+      "url": "https://www.am730.com.hk/國際/1045177/openai調查發現更多ai-越獄-anthropic也有ai模型失控-入侵3公司"
+    },
+    {
+      "source": "東方日報",
+      "titles": [
+        "男青年網購香港男歌手演唱會 墮騙局失兩千一"
+      ],
+      "url": "https://hk.on.cc/hk/bkn/cnt/news/20260802/bkn-20260802181805584-0802_00822_001.html"
+    },
+    {
+      "source": "香港經濟日報",
+      "titles": [
+        "電郵騙案｜郵箱突收預訂主題樂園門票確認信 網民拆解3大破綻籲謹防毒Link"
+      ],
+      "url": "https://topick.hket.com/article/4167291/電郵騙案｜郵箱突收預訂主題樂園門票確認信%E3%80%80網民拆解3大破綻籲謹防毒Link?mtc=20023"
+    },
+    {
+      "source": "橙新聞",
+      "titles": [
+        "伊波拉病毒｜民主剛果今輪疫情歷來最大 中國第三批專家抵達助防控"
+      ],
+      "url": "https://www.orangenews.hk/international/VR7rs3m/伊波拉病毒-民主剛果今輪疫情歷來最大-中國第三批專家抵達助防控.shtml"
+    },
+    {
+      "source": "香港經濟日報",
+      "titles": [
+        "【防騙】證監會夥警方辦退休投資講座 專家拆解最新詐騙陷阱（附報名連結）",
+        "證監會伙警方辦退休投資防騙講座！拆解詐騙陷阱（附報名連結）"
+      ],
+      "url": "https://inews.hket.com/article/4169866/sfc-police-retirement-investment-anti-scam-seminar"
+    },
+    {
+      "source": "明報",
+      "titles": [
+        "中疾控：新冠病毒檢測陽性率20.3% 屬常規周期波動 (13:35) - 20260802 - 兩岸"
+      ],
+      "url": "https://news.mingpao.com/ins/兩岸/article/20260802/s00004/1785648961066/中疾控-新冠病毒檢測陽性率20-3-屬常規周期波動"
+    },
+    {
+      "source": "香港01",
+      "titles": [
+        "美國7州供水系統遭網絡攻擊 美媒：FBI介入調查矛頭直指伊朗"
+      ],
+      "url": "https://www.hk01.com/即時國際/60375980/美國7州供水系統遭網絡攻擊-美媒-fbi介入調查矛頭直指伊朗"
+    },
+    {
+      "source": "星島日報",
+      "titles": [
+        "Google忘記密碼+遺失手機救星！自拍影片驗證身份簡單4步設定經加密保護分階段陸續開放功能"
+      ],
+      "url": "https://www.stheadline.com/lifetips/3599179/Google忘記密碼遺失手機救星自拍影片驗證身份-簡單4步設定經加密保護-分階段陸續開放功能"
+    },
+    {
+      "source": "信報",
+      "titles": [
+        "OpenAI丨新模型Astra一口氣破解10條數學難題"
+      ],
+      "url": "https://www.hkej.com/instantnews/international/article/4471524/OpenAI丨新模型Astra一口氣破解10條數學難題"
+    },
+    {
+      "source": "東方日報",
+      "titles": [
+        "智利出土木乃伊驗出天花病毒DNA 證西班牙傳染美洲"
+      ],
+      "url": "https://orientaldaily.on.cc/content/兩岸國際/odn-20260802-0802_00180_061/智利出土木乃伊驗出天花病毒DNA-證西班牙傳染美洲"
+    },
+    {
+      "source": "明報",
+      "titles": [
+        "警拘雙程證「特務」 涉4冒官員騙案呃294萬"
+      ],
+      "url": "https://news.mingpao.com/pns/港聞/article/20260802/s00002/1785607703466/警拘雙程證-特務-涉4冒官員騙案呃294萬"
+    },
+    {
+      "source": "文匯報",
+      "titles": [
+        "內地「女特務」涉4假冒官員電騙案 呃約294萬"
+      ],
+      "url": "https://www.wenweipo.com/a/202608/02/AP6a6e5629e4b0c1e500232da7.html"
+    },
+    {
+      "source": "星島日報",
+      "titles": [
+        "內地女扮「特務」 涉4電騙案呃近300萬"
+      ],
+      "url": "https://www.stheadline.com/daily-hongkong/3600059/內地女扮特務-涉4電騙案呃近300萬"
+    },
+    {
+      "source": "無綫新聞",
+      "titles": [
+        "內地女子涉四宗假冒內地官員電話騙案 涉款294萬港元"
+      ],
+      "url": "https://news.tvb.com/tc/1186540-內地女子涉四宗假冒內地官員電話騙案涉款294萬港元"
+    },
+    {
+      "source": "明報",
+      "titles": [
+        "歐盟AI法全面生效 生成內容須貼水印 限制深偽影音涉公眾利益生成文字 豁免藝術諷刺等作品"
+      ],
+      "url": "https://news.mingpao.com/pns/國際/article/20260802/s00014/1785603848961/歐盟ai法全面生效-生成內容須貼水印-限制深偽影音涉公眾利益生成文字-豁免藝術諷刺等作品"
+    },
+    {
+      "source": "東方日報",
+      "titles": [
+        "呼吸道合胞病毒易傳播 九成幼兒2歲前曾感染",
+        "呼吸道合胞病毒已傳播 九成幼兒2歲前曾感染"
+      ],
+      "url": "https://orientaldaily.on.cc/content/要聞港聞/odn-20260802-0802_00176_226/呼吸道合胞病毒易傳播--九成幼兒2歲前曾感染"
+    },
+    {
+      "source": "文匯報",
+      "titles": [
+        "美國AI再次失控 OpenAI模型入侵外部系統"
+      ],
+      "url": "https://www.wenweipo.com/a/202608/01/AP6a6e09c3e4b0c1e500232ab4.html"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "香港數碼風險新聞監察器",
+  "short_name": "風險監察",
+  "description": "香港網騙、網安、平台罪案及 AI 安全新聞監察",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#f8fafd",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "./",
+  "prefer_related_applications": false
+}
