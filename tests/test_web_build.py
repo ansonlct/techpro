@@ -91,8 +91,8 @@ class WebBuildTests(unittest.TestCase):
         root = Path(__file__).parents[1] / "web"
         html = (root / "index.html").read_text(encoding="utf-8")
         js = (root / "assets/app.js").read_text(encoding="utf-8")
-        self.assertIn('./assets/styles.css?v=20260807-mobilefix1', html)
-        self.assertIn('./assets/app.js?v=20260807-mobilefix1', html)
+        self.assertIn('./assets/styles.css?v=20260916-stickyfilter1', html)
+        self.assertIn('./assets/app.js?v=20260916-keywords2', html)
         self.assertIn('maximum-scale=1', html)
         self.assertIn('user-scalable=no', html)
         self.assertIn('initMobileInteractionGuards', js)
@@ -139,7 +139,9 @@ class WebBuildTests(unittest.TestCase):
         self.assertIn('.news-row', css)
         self.assertIn('.sidebar', css)
         self.assertIn('.keyword-group + .keyword-group', css)
-        self.assertIn('.police-keyword-group .keyword-chip', css)
+        self.assertIn('.keyword-group .keyword-chip', css)
+        self.assertIn('.fraud-keyword-group', css)
+        self.assertIn('.cyber-keyword-group', css)
 
     def test_build_outputs_creates_valid_json_and_csv(self):
         with tempfile.TemporaryDirectory() as temp:

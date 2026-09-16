@@ -127,6 +127,24 @@ class CoreTests(unittest.TestCase):
         self.assertIn("執法人員", monitor.DEFAULT_CONFIG["category_keywords"]["香港警察相關"])
         self.assertIn("香港警察相關", monitor.DEFAULT_CONFIG["ui"]["default_disabled_categories"])
 
+    def test_release_keywords_cover_requested_fraud_and_cyber_terms(self):
+        text = monitor.KEYWORDS_PATH.read_text(encoding="utf-8-sig")
+        required = [
+            "偽冒", "劫持帳戶", "騎劫", "盜用", "伺服器入侵", "系統入侵",
+            "病毒檔案", "欺詐短訊", "欺詐訊息", "欺詐電郵", "惡意軟件",
+            "假APP", "VPN", "防火牆", "網安中心", "修補漏洞", "假冒", "偽造",
+            "網攻", "OpenAI", "癱瘓", "支付寶", "Alipay", "越獄", "防騙", "反詐",
+            "散播", "流動支付", "騙案", "客服", "網購", "個人資料", "個資",
+            "電腦系統", "交易所", "比特幣", "沙盒", "憑證", "DDoS", "阻斷服務",
+            "社交媒體", "facebook", "instagram", "threads", "可疑交易",
+        ]
+        for keyword in required:
+            self.assertIn(keyword, text, keyword)
+        groups = monitor.load_custom_keyword_groups()
+        self.assertLessEqual(sum(len(group["queries"]) for group in groups), 100)
+        self.assertTrue(any(group["name"].startswith("網騙｜") for group in groups))
+        self.assertTrue(any(group["name"].startswith("網安｜") for group in groups))
+
     def test_custom_keyword_job_can_accept_direct_query_match(self):
         conn = monitor.db_connect()
         article = monitor.Article(

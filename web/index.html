@@ -11,7 +11,7 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <link rel="stylesheet" href="./assets/styles.css?v=20260807-mobilefix1">
+  <link rel="stylesheet" href="./assets/styles.css?v=20260916-stickyfilter1">
 </head>
 <body>
   <a class="skip-link" href="#newsList">跳到新聞列表</a>
@@ -95,6 +95,7 @@
 
     <main class="app-main">
       <section id="inboxView" class="view-panel active" data-view="inbox" aria-labelledby="inboxHeading">
+        <div class="inbox-sticky-controls">
         <div class="mail-toolbar">
           <div class="toolbar-left">
             <label class="approve-all-control" title="核准目前顯示的文章">
@@ -118,7 +119,7 @@
           </div>
         </div>
 
-        <div id="filterPanel" class="filter-panel hidden" aria-label="新聞篩選">
+        <div id="filterPanel" class="filter-panel is-collapsed" aria-label="新聞篩選" aria-hidden="true">
           <fieldset class="filter-field category-filter-field">
             <legend>分類</legend>
             <div id="categoryFilter" class="category-checklist" role="group" aria-label="選擇新聞分類"></div>
@@ -126,6 +127,7 @@
           <label><span>來源</span><select id="sourceFilter"><option value="">全部來源</option></select></label>
           <label><span>時間</span><select id="timeFilter"><option value="24" selected>最近 24 小時</option><option value="48">最近 48 小時</option><option value="12">最近 12 小時</option><option value="6">最近 6 小時</option></select></label>
           <label><span>排序</span><select id="sortFilter"><option value="newest">最新優先</option><option value="oldest">最舊優先</option><option value="source">按來源</option></select></label>
+        </div>
         </div>
 
         <div id="errorBanner" class="error-banner hidden" role="alert"></div>
@@ -221,6 +223,6 @@
     </article>
   </template>
 
-  <script src="./assets/app.js?v=20260807-mobilefix1" defer></script>
+  <script src="./assets/app.js?v=20260916-keywords2" defer></script>
 </body>
 </html>

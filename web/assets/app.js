@@ -206,8 +206,9 @@
   }
 
   function toggleFilters(force) {
-    const shouldOpen = typeof force === "boolean" ? force : els.filterPanel.classList.contains("hidden");
-    els.filterPanel.classList.toggle("hidden", !shouldOpen);
+    const shouldOpen = typeof force === "boolean" ? force : els.filterPanel.classList.contains("is-collapsed");
+    els.filterPanel.classList.toggle("is-collapsed", !shouldOpen);
+    els.filterPanel.setAttribute("aria-hidden", String(!shouldOpen));
     els.filterToggleButton.classList.toggle("active", shouldOpen);
     els.filterToggleButton.setAttribute("aria-expanded", String(shouldOpen));
   }
@@ -697,16 +698,41 @@
       });
       return { name: String(group?.name || "其他關聯字"), keywords };
     }).filter((group) => group.keywords.length);
+    const groupOrder = [
+      "網騙｜假冒／帳戶騎劫",
+      "網騙｜短訊／電郵／假 APP／網購",
+      "支付／交易／虛擬資產風險",
+      "網安｜伺服器／系統入侵／漏洞",
+      "網安｜防護／網安中心／私隱",
+      "網安｜惡意軟件／DDoS／癱瘓",
+      "平台／社交媒體／AI 安全風險",
+      "網罪／平台非法內容",
+      "香港警察相關",
+      "廣泛監察補充詞",
+    ];
     return groups.sort((a, b) => {
-      if (a.name === "香港警察相關") return -1;
-      if (b.name === "香港警察相關") return 1;
-      return 0;
+      const ai = groupOrder.indexOf(a.name);
+      const bi = groupOrder.indexOf(b.name);
+      if (ai === -1 && bi === -1) return 0;
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
     });
+  }
+
+  function keywordGroupClass(name) {
+    if (name.startsWith("網騙｜")) return " fraud-keyword-group";
+    if (name.startsWith("網安｜")) return " cyber-keyword-group";
+    if (name === "網罪／平台非法內容") return " cybercrime-keyword-group";
+    if (name === "平台／社交媒體／AI 安全風險") return " ai-keyword-group";
+    if (name === "支付／交易／虛擬資產風險") return " tech-keyword-group";
+    if (name === "香港警察相關") return " police-keyword-group";
+    return " general-keyword-group";
   }
 
   function renderKeywordGroup(group) {
     const section = document.createElement("section");
-    section.className = `keyword-group${group.name === "香港警察相關" ? " police-keyword-group" : ""}`;
+    section.className = `keyword-group${keywordGroupClass(group.name)}`;
     const heading = document.createElement("div");
     heading.className = "keyword-group-heading";
     const title = document.createElement("h3");
@@ -879,7 +905,7 @@
       }
       if (event.key === "Escape") {
         closeMobileSidebar();
-        if (!els.filterPanel.classList.contains("hidden")) toggleFilters(false);
+        if (!els.filterPanel.classList.contains("is-collapsed")) toggleFilters(false);
       }
     });
     window.addEventListener("resize", () => {
