@@ -1,4 +1,4 @@
-# 香港網騙及數碼風險新聞監察器 — VERSION 1
+# 香港網騙及數碼風險新聞監察器 — VERSION 1 
 
 **VERSION 1** 是首個正式穩定版，以 GitHub Actions、GitHub Pages 及 Python 標準函式庫運行。無需 API Key、獨立伺服器或付費資料庫。
 
